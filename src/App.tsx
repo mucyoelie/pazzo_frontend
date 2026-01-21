@@ -5,6 +5,7 @@ import CcsProduct from "./pages/CcsProduct";
 import OpenupsProduct from "./pages/OpenupsProduct";
 import LogsProduct from "./pages/LogsProduct";
 import Hero from "./pages/Hero";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/logs-product" element={<LogsProduct/>}/>
         </Routes>
       </div>
+      <Footer/>
     </Router>
     </>
   );
