@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { ShoppingCart, Search , Loader2, AlertCircle } from "lucide-react";
+import {  Search, Loader2, AlertCircle } from "lucide-react";
 
 interface FirewallProduct {
   _id: string;
   name: string;
   price: number;
   description: string;
-  image: string; 
+  image: string;
 }
 
 function LogsProduct() {
@@ -14,6 +14,18 @@ function LogsProduct() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // 🔹 TELEGRAM ORDER FUNCTION
+  const handleTelegramOrder = (product: FirewallProduct) => {
+    const message = encodeURIComponent(
+      `Hello, I want to order this product:\n\n` +
+      `🔹 Product: ${product.name}\n` +
+      `🔹 Price: ${product.price} RWF\n\n` +
+      `Please give me more details.`
+    );
+
+    window.open(`https://t.me/+250783175236?text=${message}`, "_blank");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +45,7 @@ function LogsProduct() {
     fetchData();
   }, []);
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -54,9 +66,11 @@ function LogsProduct() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4">
         <div className="text-center bg-white rounded-2xl shadow-xl p-8 max-w-md">
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
-          <p className="text-gray-600 mb-6">Unable to load products. Please try again later.</p>
-          <button 
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Oops! Something went wrong
+          </h2>
+          <p className="text-gray-600 mb-6">Unable to load products.</p>
+          <button
             onClick={() => window.location.reload()}
             className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
           >
@@ -68,20 +82,20 @@ function LogsProduct() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-slate-800   pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-800 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Header Section */}
+
+        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
             Logs Products
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover our premium security solutions designed to protect your business
+            Discover premium security solutions to protect your business
           </p>
         </div>
 
-        {/* Search Bar */}
+        {/* Search */}
         <div className="max-w-2xl mx-auto mb-12">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -95,13 +109,15 @@ function LogsProduct() {
           </div>
         </div>
 
-        {/* Products Grid */}
+        {/* Products */}
         {filteredProducts.length === 0 ? (
           <div className="text-center py-16">
             <div className="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
               <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-              <p className="text-gray-600">Try adjusting your search terms</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                No products found
+              </h3>
+              <p className="text-gray-600">Try different keywords</p>
             </div>
           </div>
         ) : (
@@ -112,8 +128,8 @@ function LogsProduct() {
                 className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Image Container */}
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden bg-gray-200">
                   {item.image ? (
                     <img
                       src={`data:image/jpeg;base64,${item.image}`}
@@ -126,13 +142,10 @@ function LogsProduct() {
                         <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-3 flex items-center justify-center">
                           <AlertCircle className="w-10 h-10 text-gray-500" />
                         </div>
-                        <p className="text-gray-500 font-medium">No Image Available</p>
+                        <p className="text-gray-500 font-medium">No Image</p>
                       </div>
                     </div>
                   )}
-                  
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
                 {/* Content */}
@@ -152,27 +165,41 @@ function LogsProduct() {
                     {item.description}
                   </p>
 
-                  {/* Action Buttons */}
+                  {/* Buttons */}
                   <div className="flex gap-3">
-                    <button className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2">
-                      <ShoppingCart className="w-4 h-4" />
-                      Add to Cart
+                    
+                    {/* ORDER ON TELEGRAM BUTTON */}
+                    <button
+                      onClick={() => handleTelegramOrder(item)}
+                      className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      Order on Telegram
                     </button>
+
                     <button className="px-4 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-200">
                       Details
                     </button>
                   </div>
                 </div>
+
               </div>
             ))}
           </div>
         )}
 
-        {/* Product Count */}
+        {/* Product count */}
         {filteredProducts.length > 0 && (
           <div className="text-center mt-12">
             <p className="text-gray-600">
-              Showing <span className="font-semibold text-blue-600">{filteredProducts.length}</span> of <span className="font-semibold">{products.length}</span> products
+              Showing{" "}
+              <span className="font-semibold text-blue-600">
+                {filteredProducts.length}
+              </span>{" "}
+              of{" "}
+              <span className="font-semibold">
+                {products.length}
+              </span>{" "}
+              products
             </p>
           </div>
         )}
