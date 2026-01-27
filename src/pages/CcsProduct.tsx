@@ -1,13 +1,12 @@
-
 import { useEffect, useState } from "react";
-import { ShoppingCart, Search, Loader2, AlertCircle } from "lucide-react";
+import { Search, Loader2, AlertCircle } from "lucide-react";
 
 interface CcsType {
   _id: string;
   name: string;
   price: number;
   description: string;
-  image: string;
+  image: string; // base64 string
 }
 
 function CcsProduct() {
@@ -15,6 +14,17 @@ function CcsProduct() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // 🔹 TELEGRAM ORDER
+  const handleTelegramOrder = (product: CcsType) => {
+    const message = encodeURIComponent(
+      `Hello, I want to order this product:\n\n` +
+      `🔹 Product: ${product.name}\n` +
+      `🔹 Price: ${product.price.toLocaleString()} RWF\n\n` +
+      `Please provide more details.`
+    );
+    window.open(`https://t.me/+250783175236?text=${message}`, "_blank");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -114,7 +124,7 @@ function CcsProduct() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* IMAGE */}
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                   {item.image ? (
                     <img
                       src={`data:image/jpeg;base64,${item.image}`}
@@ -151,9 +161,12 @@ function CcsProduct() {
                   </p>
 
                   <div className="flex gap-3">
-                    <button className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2">
-                      <ShoppingCart className="w-4 h-4" />
-                      Add to Cart
+                    {/* ORDER ON TELEGRAM */}
+                    <button
+                      onClick={() => handleTelegramOrder(item)}
+                      className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      Order on Telegram
                     </button>
 
                     <button className="px-4 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-200">
@@ -172,8 +185,7 @@ function CcsProduct() {
             <p className="text-gray-600">
               Showing{" "}
               <span className="font-semibold text-blue-600">{filteredProducts.length}</span>{" "}
-              of{" "}
-              <span className="font-semibold">{products.length}</span> products
+              of <span className="font-semibold">{products.length}</span> products
             </p>
           </div>
         )}
@@ -183,4 +195,3 @@ function CcsProduct() {
 }
 
 export default CcsProduct;
-

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ShoppingCart, Search, Loader2, AlertCircle } from "lucide-react";
+import { Search, Loader2, AlertCircle } from "lucide-react";
 
 interface ImageType {
   contentType: string;
@@ -19,6 +19,17 @@ function OpenupsProduct() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // 🔹 TELEGRAM ORDER FUNCTION
+  const handleTelegramOrder = (product: OpenupsType) => {
+    const message = encodeURIComponent(
+      `Hello, I want to order this product:\n\n` +
+      `🔹 Product: ${product.name}\n` +
+      `🔹 Price: ${product.price.toLocaleString()} RWF\n\n` +
+      `Please provide more details.`
+    );
+    window.open(`https://t.me/+250783175236?text=${message}`, "_blank");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +61,9 @@ function OpenupsProduct() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600 text-lg font-medium">Loading OpenUps products...</p>
+          <p className="text-gray-600 text-lg font-medium">
+            Loading OpenUps products...
+          </p>
         </div>
       </div>
     );
@@ -62,7 +75,9 @@ function OpenupsProduct() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4">
         <div className="text-center bg-white rounded-2xl shadow-xl p-8 max-w-md">
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Oops! Something went wrong
+          </h2>
           <p className="text-gray-600 mb-6">
             Unable to load OpenUps products. Please try again later.
           </p>
@@ -111,7 +126,9 @@ function OpenupsProduct() {
           <div className="text-center py-16">
             <div className="bg-white rounded-2xl shadow-lg p-12 max-w-md mx-auto">
               <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                No products found
+              </h3>
               <p className="text-gray-600">Try adjusting your search term.</p>
             </div>
           </div>
@@ -130,17 +147,6 @@ function OpenupsProduct() {
                       src={`data:${item.image.contentType};base64,${item.image.data}`}
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      onLoad={() =>
-                        console.log(`✓ Image loaded for: ${item.name}`)
-                      }
-                      onError={(e) => {
-                        console.error(`✗ Image failed to load for: ${item.name}`);
-                        console.error(
-                          "Image src:",
-                          (e.target as HTMLImageElement).src.substring(0, 100)
-                        );
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
@@ -167,12 +173,18 @@ function OpenupsProduct() {
                     <span className="text-gray-600 font-medium">RWF</span>
                   </div>
 
-                  <p className="text-gray-600 text-sm mb-6 line-clamp-3">{item.description}</p>
+                  <p className="text-gray-600 text-sm mb-6 line-clamp-3">
+                    {item.description}
+                  </p>
 
+                  {/* BUTTONS */}
                   <div className="flex gap-3">
-                    <button className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2">
-                      <ShoppingCart className="w-4 h-4" />
-                      Add to Cart
+                    {/* ORDER ON TELEGRAM */}
+                    <button
+                      onClick={() => handleTelegramOrder(item)}
+                      className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      Order on Telegram
                     </button>
 
                     <button className="px-4 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-200">
@@ -190,11 +202,8 @@ function OpenupsProduct() {
           <div className="text-center mt-12">
             <p className="text-gray-600">
               Showing{" "}
-              <span className="font-semibold text-blue-600">
-                {filteredProducts.length}
-              </span>{" "}
-              of{" "}
-              <span className="font-semibold">{products.length}</span> products
+              <span className="font-semibold text-blue-600">{filteredProducts.length}</span>{" "}
+              of <span className="font-semibold">{products.length}</span> products
             </p>
           </div>
         )}
@@ -204,3 +213,4 @@ function OpenupsProduct() {
 }
 
 export default OpenupsProduct;
+
