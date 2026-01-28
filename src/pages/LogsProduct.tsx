@@ -30,7 +30,7 @@ function LogsProduct() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/firewalls");
+        const res = await fetch("https://pazzo-backend.onrender.com/api/firewalls");
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setProducts(data);

@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
               alt="TechRise Logo"
               className="w-12 h-12 object-contain rounded-full transform group-hover:scale-110 transition-transform duration-300"
             />
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="xl:text-2xl font-bold  bg-blue-600 bg-clip-text text-transparent sm:text-xl">
               MufasaOpenUps&Logs
             </span>
           </Link>
@@ -66,18 +66,18 @@ const Navbar: React.FC = () => {
           {/* Right side: Dark/Light Mode + Contact Button */}
           <div className="flex items-center gap-3">
             {/* Dark/Light Mode Toggle */}
+            {/* Dark/Light Mode Toggle (Desktop Only) */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="hidden md:flex p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
               aria-label="Toggle dark/light mode"
             >
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-
             {/* Contact Button */}
             <Link
               to="/contact"
-              className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200 hidden md:inline-block"
+              className="px-6 py-2.5 rounded-lg  bg-blue-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200 hidden md:inline-block"
             >
               Contact
             </Link>

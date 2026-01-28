@@ -29,7 +29,7 @@ function CcsProduct() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/ccs");
+        const res = await fetch("https://pazzo-backend.onrender.com/api/ccs");
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setProducts(data);
@@ -62,7 +62,7 @@ function CcsProduct() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 font-urbanist">
         <div className="text-center bg-white rounded-2xl shadow-xl p-8 max-w-md">
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>

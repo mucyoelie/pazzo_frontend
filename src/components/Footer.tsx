@@ -2,7 +2,7 @@ import { Facebook, Github, Instagram, Linkedin, Mail, MapPin, Phone, ArrowRight 
 
 function Footer() {
   return (
-    <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-gray-300">
+    <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-gray-300 font-manrope">
       {/* Decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600"></div>
       
