@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative w-full bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 py-16 md:py-40 px-6 md:px-16 overflow-hidden dark:bg-slate-800">
+    <section className="relative w-full bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100  py-28 md:py-40 px-6 md:px-16 overflow-hidden dark:bg-slate-800">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
