@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
             <img
               src="/logo.jpeg"
               alt="TechRise Logo"
-              className="w-12 h-12 object-contain rounded-full transform group-hover:scale-110 transition-transform duration-300"
+              className="w-16 h-16 object-contain rounded-full transform group-hover:scale-110 transition-transform duration-300"
             />
             <span className="xl:text-2xl font-bold  bg-blue-600 bg-clip-text text-transparent sm:text-xl">
               MufasaOpenUps&Logs

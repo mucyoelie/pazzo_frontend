@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-gray-300 font-manrope">
       {/* Decorative top border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600"></div>
       
       <div className="max-w-7xl mx-auto px-6 py-4"> {/* reduced from py-6 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-4"> {/* reduced gap & mb */}
@@ -15,7 +15,7 @@ function Footer() {
               <img
                 src="/logo.jpeg"
                 alt="TechRise Logo"
-                className="w-16 h-16 object-cover rounded-2xl shadow-xl ring-2 ring-blue-500/20 group-hover:ring-blue-500/40 transition-all duration-300" 
+                className="w-16 h-16 object-cover rounded-full shadow-xl ring-2 ring-blue-500/20 group-hover:ring-blue-500/40 transition-all duration-300" 
               />
             </div>
 
@@ -48,7 +48,7 @@ function Footer() {
           {/* Products Section */}
           <div>
             <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <span className="w-1 h-5 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></span>
+              <span className="w-1 h-5 bg-blue-500  rounded-full"></span>
               Company
             </h3>
 
@@ -75,7 +75,7 @@ function Footer() {
           {/* Contact Section */}
           <div>
             <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <span className="w-1 h-5 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></span>
+              <span className="w-1 h-5 bg-blue-600  rounded-full"></span>
               Contact
             </h3>
 
@@ -120,7 +120,7 @@ function Footer() {
                 placeholder="Enter your email"
                 className="flex-1 px-3 py-2 bg-slate-800/50 border border-slate-700 rounded-md text-sm text-white"
               />
-              <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md text-sm text-white">
+              <button className="px-4 py-2 bg-blue-600  rounded-md text-sm text-white">
                 Subscribe
               </button>
             </div>

@@ -94,12 +94,12 @@ function OpenupsProduct() {
 
   // MAIN UI
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-slate-800 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-800 pt-32 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl font-bold bg-blue-600  bg-clip-text text-transparent mb-4">
             OpenUps Products
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -182,7 +182,7 @@ function OpenupsProduct() {
                     {/* ORDER ON TELEGRAM */}
                     <button
                       onClick={() => handleTelegramOrder(item)}
-                      className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200"
+                      className="flex-1 px-4 py-3 bg-blue-600  text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-0.5 transition-all duration-200"
                     >
                       Order on Telegram
                     </button>
